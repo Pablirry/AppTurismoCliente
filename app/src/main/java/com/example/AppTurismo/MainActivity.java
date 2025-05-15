@@ -1,37 +1,48 @@
 package com.example.AppTurismo;
 
-import android.os.Bundle;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+            import android.content.Intent;
+            import android.os.Bundle;
+            import android.widget.Button;
+            import android.widget.ImageButton;
+            import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+            public class MainActivity extends AppCompatActivity {
+                private int usuarioId;
 
-    private static final String DB_URL = "jdbc:mysql://usrshnydk2vnkzsm:jrbyBVqDOaUSMx0BXjMq@be6i3twqn0pieiochkud-mysql.services.clever-cloud.com:3306/be6i3twqn0pieiochkud";
-    private static final String USER = "usrshnydk2vnkzsm";
-    private static final String PASSWORD = "jrbyBVqDOaUSMx0BXjMq";
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.activity_main);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+                    usuarioId = getIntent().getIntExtra("usuarioId", -1);
 
-        // Attempt to connect to the database
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-                    if (connection != null) {
-                        runOnUiThread(() -> Toast.makeText(MainActivity.this, "Connected to Database", Toast.LENGTH_SHORT).show());
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "Connection Failed: " + e.getMessage(), Toast.LENGTH_LONG).show());
+                    Button btnRutas = findViewById(R.id.btnRutas);
+                    Button btnRestaurantes = findViewById(R.id.btnRestaurantes);
+                    Button btnHistorial = findViewById(R.id.btnHistorial);
+                    ImageButton btnMensajes = findViewById(R.id.btnMensajes);
+
+                    btnRutas.setOnClickListener(v -> {
+                        Intent intent = new Intent(this, RutasActivity.class);
+                        intent.putExtra("usuarioId", usuarioId);
+                        startActivity(intent);
+                    });
+
+                    btnRestaurantes.setOnClickListener(v -> {
+                        Intent intent = new Intent(this, RestaurantesActivity.class);
+                        intent.putExtra("usuarioId", usuarioId);
+                        startActivity(intent);
+                    });
+
+                    btnHistorial.setOnClickListener(v -> {
+                        Intent intent = new Intent(this, HistorialActivity.class);
+                        intent.putExtra("usuarioId", usuarioId);
+                        startActivity(intent);
+                    });
+
+                    btnMensajes.setOnClickListener(v -> {
+                        Intent intent = new Intent(this, MensajeActivity.class);
+                        intent.putExtra("usuarioId", usuarioId);
+                        startActivity(intent);
+                    });
                 }
             }
-        }).start();
-    }
-}

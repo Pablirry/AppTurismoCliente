@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to My Android JDBC App"
-        android:textSize="18sp"
-        android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/btnRutas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Rutas"
+                    android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/editTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your input"/>
+                <Button
+                    android:id="@+id/btnRestaurantes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Restaurantes"
+                    android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/btnHistorial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Historial"
+                    android:layout_marginBottom="16dp"/>
 
+    <ImageButton
+        android:id="@+id/btnMensajes"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:contentDescription="Mensajes"
+        android:src="@android:drawable/ic_dialog_email" />
 </LinearLayout>
