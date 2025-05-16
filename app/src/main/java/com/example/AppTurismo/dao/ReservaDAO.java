@@ -1,6 +1,6 @@
 package com.example.AppTurismo.dao;
 
-import com.example.AppTurismo.DataBaseHelper;
+import com.example.AppTurismo.GestorJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,14 +9,14 @@ import java.util.Date;
 
 public class ReservaDAO {
 
-    private DataBaseHelper db;
+    private GestorJDBC db;
 
-    public ReservaDAO(DataBaseHelper db) {
+    public ReservaDAO(GestorJDBC db) {
         this.db = db;
     }
 
     public boolean reservarRuta(int idUsuario, int idRuta, Date fecha) {
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "INSERT INTO reservas (id_usuario, id_ruta, fecha, confirmada) VALUES (?, ?, ?, false)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);

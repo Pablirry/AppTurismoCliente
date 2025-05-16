@@ -10,7 +10,7 @@ package com.example.AppTurismo;
 
     public class HistorialActivity extends AppCompatActivity {
         private ListView listViewHistorial;
-        private DataBaseHelper dbHelper;
+        private GestorJDBC dbHelper;
         private int usuarioId;
 
         @Override
@@ -19,7 +19,7 @@ package com.example.AppTurismo;
             setContentView(R.layout.activity_historial);
 
             usuarioId = getIntent().getIntExtra("usuarioId", -1);
-            dbHelper = new DataBaseHelper(this);
+            dbHelper = GestorJDBC.getInstance();
             listViewHistorial = findViewById(R.id.listViewHistorial);
 
             cargarHistorial();

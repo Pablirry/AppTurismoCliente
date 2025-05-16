@@ -1,6 +1,6 @@
 package com.example.AppTurismo.dao;
 
-import com.example.AppTurismo.DataBaseHelper;
+import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.model.Restaurante;
 
 import java.sql.Connection;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestauranteDAO {
-    private DataBaseHelper db;
+    private GestorJDBC db;
 
-    public RestauranteDAO(DataBaseHelper db) {
+    public RestauranteDAO(GestorJDBC db) {
         this.db = db;
     }
 
     public List<Restaurante> listarRestaurantes() {
         List<Restaurante> restaurantes = new ArrayList<>();
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "SELECT * FROM restaurantes";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);

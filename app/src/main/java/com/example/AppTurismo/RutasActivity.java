@@ -1,18 +1,21 @@
 package com.example.AppTurismo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.AppTurismo.adapter.RutaAdapter;
 import com.example.AppTurismo.dao.RutaDAO;
 import com.example.AppTurismo.model.Ruta;
 import java.util.List;
 
 public class RutasActivity extends AppCompatActivity {
     private int usuarioId;
-    private DataBaseHelper dbHelper;
+    private GestorJDBC dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +23,7 @@ public class RutasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rutas);
 
         usuarioId = getIntent().getIntExtra("usuarioId", -1);
-        dbHelper = new DataBaseHelper(this);
+        dbHelper = GestorJDBC.getInstance();
         ListView listViewRutas = findViewById(R.id.listViewRutas);
 
         new Thread(() -> {
@@ -28,8 +31,15 @@ public class RutasActivity extends AppCompatActivity {
                 RutaDAO rutaDAO = new RutaDAO(dbHelper);
                 List<Ruta> rutas = rutaDAO.listarRutas();
                 runOnUiThread(() -> {
-                    ArrayAdapter<Ruta> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rutas);
+                    RutaAdapter adapter = new RutaAdapter(this, rutas);
                     listViewRutas.setAdapter(adapter);
+
+                    listViewRutas.setOnItemClickListener((parent, view, position, id) -> {
+                        Ruta rutaSeleccionada = rutas.get(position);
+                        Intent intent = new Intent(this, DetalleRutaActivity.class);
+                        intent.putExtra("rutaId", rutaSeleccionada.getId());
+                        startActivity(intent);
+                    });
                 });
             } catch (Exception e) {
                 runOnUiThread(() -> Toast.makeText(this, "Error al cargar rutas", Toast.LENGTH_SHORT).show());

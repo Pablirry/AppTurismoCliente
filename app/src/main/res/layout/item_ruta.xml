@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/imgRuta"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/rounded_image_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txtNombreRuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la Ruta"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#333"/>
+
+        <TextView
+            android:id="@+id/txtDescripcionRuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción breve de la ruta"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/txtPrecioRuta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio: 0.00€"
+            android:textSize="14sp"
+            android:textColor="#4CAF50"
+            android:paddingTop="4dp"/>
+    </LinearLayout>
+</LinearLayout>

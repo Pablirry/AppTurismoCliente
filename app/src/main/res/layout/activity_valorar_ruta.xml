@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valora esta ruta"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/etComentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comentario"
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnEnviarValoracion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar valoración"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

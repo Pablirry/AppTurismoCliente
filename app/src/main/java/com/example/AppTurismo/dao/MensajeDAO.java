@@ -1,6 +1,6 @@
 package com.example.AppTurismo.dao;
 
-import com.example.AppTurismo.DataBaseHelper;
+import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.model.Mensaje;
 
 import java.sql.*;
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MensajeDAO {
-    private DataBaseHelper db;
+    private GestorJDBC db;
 
-    public MensajeDAO(DataBaseHelper db) {
+    public MensajeDAO(GestorJDBC db) {
         this.db = db;
     }
 
     public boolean enviarMensaje(int idUsuario, String usuarioNombre, String mensaje) {
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "INSERT INTO mensajes (id_usuario, usuarioNombre, mensaje) VALUES (?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
@@ -30,7 +30,7 @@ public class MensajeDAO {
 
     public List<Mensaje> obtenerMensajesPorUsuario(int idUsuario) {
         List<Mensaje> mensajes = new ArrayList<>();
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "SELECT * FROM mensajes WHERE id_usuario = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);

@@ -1,0 +1,75 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/imgDetalleRuta"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image_bg"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la Ruta"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción completa de la ruta"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtDetallePrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio: 0.00€"
+            android:textSize="16sp"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleDificultad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dificultad"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+        />
+
+        <RatingBar
+            android:id="@+id/ratingBarDificultad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:isIndicator="true"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnReservar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reservar"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnValorar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valorar Ruta"/>
+    </LinearLayout>
+</ScrollView>

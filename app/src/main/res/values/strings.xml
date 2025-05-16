@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">AppTurismoMovil</string>
-    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="app_name">AsturTerra</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>

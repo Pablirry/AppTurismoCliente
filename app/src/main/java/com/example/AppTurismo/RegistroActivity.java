@@ -11,7 +11,7 @@ import com.example.AppTurismo.dao.UsuarioDAO;
 public class RegistroActivity extends AppCompatActivity {
     private EditText etNombre, etCorreo, etContrasena;
     private Button btnRegistrar;
-    private DataBaseHelper dbHelper;
+    private GestorJDBC dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class RegistroActivity extends AppCompatActivity {
         etCorreo = findViewById(R.id.etCorreo);
         etContrasena = findViewById(R.id.etContrasena);
         btnRegistrar = findViewById(R.id.btnRegistrar);
-        dbHelper = new DataBaseHelper(this);
+        dbHelper = GestorJDBC.getInstance();
 
         btnRegistrar.setOnClickListener(v -> {
             String nombre = etNombre.getText().toString();
@@ -31,15 +31,25 @@ public class RegistroActivity extends AppCompatActivity {
 
             new Thread(() -> {
                 UsuarioDAO usuarioDAO = new UsuarioDAO(dbHelper);
-                boolean registrado = usuarioDAO.registrarUsuario(nombre, correo, contrasena);
+                boolean registrado = false;
+                Exception error = null;
+                try {
+                    registrado = usuarioDAO.registrarUsuario(nombre, correo, contrasena);
+                } catch (Exception e) {
+                    error = e;
+                }
+                boolean finalRegistrado = registrado;
+                Exception finalError = error;
                 runOnUiThread(() -> {
-                    if (registrado) {
+                    if (finalRegistrado) {
                         Toast.makeText(this, "Registro exitoso. Inicia sesión.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
+                        String msg = "Error al registrar usuario";
+                        if (finalError != null) msg += ": " + finalError.getMessage();
+                        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
                     }
                 });
             }).start();

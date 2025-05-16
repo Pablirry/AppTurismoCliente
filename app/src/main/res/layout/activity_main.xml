@@ -1,38 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="32dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/main_menu_bg"
+    android:padding="32dp">
 
-                <Button
-                    android:id="@+id/btnRutas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ver Rutas"
-                    android:layout_marginBottom="16dp"/>
+    <ImageView
+        android:layout_width="171dp"
+        android:layout_height="144dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:padding="16dp"
+        android:src="@mipmap/logo_asturterra_round" />
 
-                <Button
-                    android:id="@+id/btnRestaurantes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ver Restaurantes"
-                    android:layout_marginBottom="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:text="AsturTerra"
+        android:textColor="#3D246C"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btnHistorial"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Historial"
-                    android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/btnRutas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/rounded_menu_button"
+        android:text="Ver Rutas"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnRestaurantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Restaurantes"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="#FFF"
+        android:background="@drawable/rounded_menu_button"
+        android:layout_marginBottom="18dp"/>
+
+    <Button
+        android:id="@+id/btnHistorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Historial"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="#FFF"
+        android:background="@drawable/rounded_menu_button"
+        android:layout_marginBottom="18dp"/>
 
     <ImageButton
         android:id="@+id/btnMensajes"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="center_horizontal"
-        android:background="?android:selectableItemBackgroundBorderless"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_menu_button"
         android:contentDescription="Mensajes"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@android:drawable/ic_dialog_email"/>
+
 </LinearLayout>

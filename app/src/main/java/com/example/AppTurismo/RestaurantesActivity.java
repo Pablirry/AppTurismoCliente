@@ -1,33 +1,33 @@
 package com.example.AppTurismo;
 
-        import android.os.Bundle;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
-        import androidx.appcompat.app.AppCompatActivity;
-        import com.example.AppTurismo.dao.RestauranteDAO;
-        import com.example.AppTurismo.model.Restaurante;
-        import java.util.List;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.AppTurismo.dao.RestauranteDAO;
+import com.example.AppTurismo.model.Restaurante;
+import java.util.List;
 
-        public class RestaurantesActivity extends AppCompatActivity {
-            private int usuarioId;
-            private DataBaseHelper dbHelper;
+public class RestaurantesActivity extends AppCompatActivity {
+    private int usuarioId;
+    private GestorJDBC dbHelper;
 
-            @Override
-            protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_restaurantes);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_restaurantes);
 
-                usuarioId = getIntent().getIntExtra("usuarioId", -1);
-                dbHelper = new DataBaseHelper(this);
-                ListView listViewRestaurantes = findViewById(R.id.listViewRestaurantes);
+        usuarioId = getIntent().getIntExtra("usuarioId", -1);
+        dbHelper = GestorJDBC.getInstance();
+        ListView listViewRestaurantes = findViewById(R.id.listViewRestaurantes);
 
-                new Thread(() -> {
-                    RestauranteDAO restauranteDAO = new RestauranteDAO(dbHelper);
-                    List<Restaurante> restaurantes = restauranteDAO.listarRestaurantes();
-                    runOnUiThread(() -> {
-                        ArrayAdapter<Restaurante> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, restaurantes);
-                        listViewRestaurantes.setAdapter(adapter);
-                    });
-                }).start();
-            }
-        }
+        new Thread(() -> {
+            RestauranteDAO restauranteDAO = new RestauranteDAO(dbHelper);
+            List<Restaurante> restaurantes = restauranteDAO.listarRestaurantes();
+            runOnUiThread(() -> {
+                ArrayAdapter<Restaurante> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, restaurantes);
+                listViewRestaurantes.setAdapter(adapter);
+            });
+        }).start();
+    }
+}

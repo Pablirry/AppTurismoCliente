@@ -1,6 +1,6 @@
 package com.example.AppTurismo.dao;
 
-import com.example.AppTurismo.DataBaseHelper;
+import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.model.Historial;
 
 import java.sql.*;
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistorialDAO {
-    private DataBaseHelper db;
+    private GestorJDBC db;
 
-    public HistorialDAO(DataBaseHelper db) {
+    public HistorialDAO(GestorJDBC db) {
         this.db = db;
     }
 
     public boolean registrarAccion(int idUsuario, String accion) {
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "INSERT INTO historial (id_usuario, accion) VALUES (?, ?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
@@ -29,7 +29,7 @@ public class HistorialDAO {
 
     public List<Historial> obtenerHistorialPorUsuario(int idUsuario) {
         List<Historial> historial = new ArrayList<>();
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "SELECT * FROM historial WHERE id_usuario = ? ORDER BY fecha DESC";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);

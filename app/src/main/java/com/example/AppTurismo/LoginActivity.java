@@ -12,7 +12,7 @@ import com.example.AppTurismo.model.Usuario;
 public class LoginActivity extends AppCompatActivity {
     private EditText etCorreo, etContrasena;
     private Button btnLogin, btnRegistro;
-    private DataBaseHelper dbHelper;
+    private GestorJDBC dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +23,25 @@ public class LoginActivity extends AppCompatActivity {
         etContrasena = findViewById(R.id.etContrasena);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegistro = findViewById(R.id.btnRegistro);
-        dbHelper = new DataBaseHelper(this);
+        dbHelper = GestorJDBC.getInstance();
 
         btnLogin.setOnClickListener(v -> {
             String correo = etCorreo.getText().toString();
             String contrasena = etContrasena.getText().toString();
 
             new Thread(() -> {
-                UsuarioDAO usuarioDAO = new UsuarioDAO(dbHelper);
-                Usuario usuario = usuarioDAO.login(correo, contrasena);
+                String publicId = null;
+                try {
+                    publicId = GestorJDBC.getInstance().login(correo, contrasena);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String finalPublicId = publicId;
                 runOnUiThread(() -> {
-                    if (usuario != null) {
+                    if (finalPublicId != null) {
+                        // Login exitoso, puedes guardar el publicId o pasar a la siguiente actividad
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("usuarioId", usuario.getId());
+                        intent.putExtra("usuarioId", finalPublicId);
                         startActivity(intent);
                         finish();
                     } else {

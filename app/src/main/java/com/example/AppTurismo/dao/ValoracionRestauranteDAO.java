@@ -1,20 +1,20 @@
 package com.example.AppTurismo.dao;
 
-import com.example.AppTurismo.DataBaseHelper;
+import com.example.AppTurismo.GestorJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ValoracionRestauranteDAO {
-    private DataBaseHelper db;
+    private GestorJDBC db;
 
-    public ValoracionRestauranteDAO(DataBaseHelper db) {
+    public ValoracionRestauranteDAO(GestorJDBC db) {
         this.db = db;
     }
 
     public boolean valorarRestaurante(int idUsuario, int idRestaurante, int puntuacion, String comentario) {
-        try (Connection con = db.connectToDatabase()) {
+        try (Connection con = db.getConnection()) {
             String sql = "INSERT INTO valoraciones_restaurantes (id_usuario, id_restaurante, puntuacion, comentario) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
