@@ -40,7 +40,9 @@ dependencies {
     implementation libs.annotation
     implementation libs.lifecycle.livedata.ktx
     implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.recyclerview
     testImplementation libs.junit
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core

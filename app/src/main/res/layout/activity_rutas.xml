@@ -13,8 +13,17 @@
         android:layout_gravity="center_horizontal"
         android:paddingBottom="8dp"/>
 
+    <Button
+        android:id="@+id/btnVerReservas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver reservas"
+        android:layout_marginBottom="12dp"/>
+
     <ListView
         android:id="@+id/listViewRutas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
 </LinearLayout>

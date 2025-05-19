@@ -1,6 +1,7 @@
 package com.example.AppTurismo.Activities;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +29,11 @@ public class MensajeActivity extends AppCompatActivity {
     private int usuarioId;
     private String usuarioNombre;
     private GestorJDBC dbHelper;
+    private boolean isInForeground = true;
+    private int ultimoTamanoMensajes = 0;
     private List<ChatItem> chatItems = new ArrayList<>();
+    private Handler handler = new Handler();
+    private Runnable refrescarChatRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,33 @@ public class MensajeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        refrescarChatRunnable = new Runnable() {
+            @Override
+            public void run() {
+                cargarMensajes();
+                handler.postDelayed(this, 2000);
+            }
+        };
+        handler.post(refrescarChatRunnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(refrescarChatRunnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isInForeground = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isInForeground = false;
     }
 
     private void cargarMensajes() {
@@ -78,7 +110,6 @@ public class MensajeActivity extends AppCompatActivity {
 
             List<ChatItem> items = new ArrayList<>();
             for (Mensaje m : lista) {
-                // Mensaje del usuario
                 if (m.getMensaje() != null && !m.getMensaje().isEmpty() && m.getIdUsuario() == usuarioId) {
                     items.add(new ChatItem(
                             ChatItem.TIPO_USUARIO,
@@ -86,7 +117,6 @@ public class MensajeActivity extends AppCompatActivity {
                             m.getFecha()
                     ));
                 }
-                // Respuesta del admin
                 if (m.getRespuesta() != null && !m.getRespuesta().isEmpty()) {
                     items.add(new ChatItem(
                             ChatItem.TIPO_ADMIN,
@@ -96,10 +126,9 @@ public class MensajeActivity extends AppCompatActivity {
                 }
             }
 
-            // Notificación si hay nueva respuesta del admin
-            if (items.size() > chatItems.size() && !items.isEmpty()) {
+            if (items.size() > ultimoTamanoMensajes && !items.isEmpty()) {
                 ChatItem ultimo = items.get(items.size() - 1);
-                if (ultimo.getTipo() == ChatItem.TIPO_ADMIN) {
+                if (ultimo.getTipo() == ChatItem.TIPO_ADMIN && !isInForeground) {
                     runOnUiThread(() -> NotificacionUtils.showNotification(
                             this,
                             "Respuesta del administrador",
@@ -107,6 +136,7 @@ public class MensajeActivity extends AppCompatActivity {
                     ));
                 }
             }
+            ultimoTamanoMensajes = items.size();
             chatItems = items;
 
             runOnUiThread(() -> {

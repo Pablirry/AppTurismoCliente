@@ -1,9 +1,5 @@
 package com.example.AppTurismo;
 
-import static claves.ClavesJDBC.PASSWORD;
-import static claves.ClavesJDBC.URI;
-import static claves.ClavesJDBC.USER;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -17,6 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GestorJDBC extends Service {
+
+    // GestorJDBC.java
+    private static final String URI = "jdbc:mysql://be6i3twqn0pieiochkud-mysql.services.clever-cloud.com:3306/be6i3twqn0pieiochkud";
+    private static final String USER = "usrshnydk2vnkzsm";
+    private static final String PASSWORD = "HJAlziOv2B3LyzsRSt2T";
 
     // singleton
     private static GestorJDBC gestor;

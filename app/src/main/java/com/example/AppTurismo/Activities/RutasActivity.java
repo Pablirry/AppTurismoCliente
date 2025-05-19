@@ -2,6 +2,7 @@ package com.example.AppTurismo.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class RutasActivity extends AppCompatActivity {
     private int usuarioId;
     private GestorJDBC dbHelper;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class RutasActivity extends AppCompatActivity {
         usuarioId = getIntent().getIntExtra("usuarioId", -1);
         dbHelper = GestorJDBC.getInstance();
         ListView listViewRutas = findViewById(R.id.listViewRutas);
+        Button btnVerReservas = findViewById(R.id.btnVerReservas);
 
         new Thread(() -> {
             try {
@@ -47,5 +50,11 @@ public class RutasActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(this, "Error al cargar rutas", Toast.LENGTH_SHORT).show());
             }
         }).start();
+
+        btnVerReservas.setOnClickListener(v -> {
+            Intent intent = new Intent(this, VerReservasActivity.class);
+            intent.putExtra("usuarioId", usuarioId);
+            startActivity(intent);
+        });
     }
 }
