@@ -1,5 +1,6 @@
 package com.example.AppTurismo;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import com.example.AppTurismo.dao.RutaDAO;
 import com.example.AppTurismo.dao.ReservaDAO;
 import com.example.AppTurismo.model.Ruta;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class DetalleRutaActivity extends AppCompatActivity {
@@ -22,14 +24,9 @@ public class DetalleRutaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_ruta);
 
-        int rutaId = getIntent().getIntExtra("rutaId", -1);
-        Toast.makeText(this, "ID recibido: " + rutaId, Toast.LENGTH_LONG).show();
-
-        if (rutaId == -1) {
-            Toast.makeText(this, "Ruta no válida", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+        rutaId = getIntent().getIntExtra("rutaId", -1);
+        usuarioId = getIntent().getIntExtra("usuarioId", -1);
+        dbHelper = GestorJDBC.getInstance();
 
         ImageView imgRuta = findViewById(R.id.imgDetalleRuta);
         TextView txtNombre = findViewById(R.id.txtDetalleNombre);
@@ -37,7 +34,7 @@ public class DetalleRutaActivity extends AppCompatActivity {
         TextView txtPrecio = findViewById(R.id.txtDetallePrecio);
         RatingBar ratingBarDificultad = findViewById(R.id.ratingBarDificultad);
         Button btnReservar = findViewById(R.id.btnReservar);
-        Button btnEnviar = findViewById(R.id.btnValorar);
+        Button btnValorar = findViewById(R.id.btnValorar);
 
         new Thread(() -> {
             RutaDAO rutaDAO = new RutaDAO(GestorJDBC.getInstance());
@@ -65,22 +62,42 @@ public class DetalleRutaActivity extends AppCompatActivity {
         }).start();
 
         btnReservar.setOnClickListener(v -> {
-            new Thread(() -> {
-                ReservaDAO reservaDAO = new ReservaDAO(dbHelper);
-                boolean reservado = reservaDAO.reservarRuta(usuarioId, rutaId, new Date());
-                if (reservado) {
-                    // Registrar acción: reserva realizada
-                    new com.example.AppTurismo.dao.HistorialDAO(dbHelper)
-                            .registrarAccion(usuarioId, "Ha reservado la ruta con id " + rutaId);
-                }
-                runOnUiThread(() -> {
-                    if (reservado) {
-                        Toast.makeText(this, "Reserva realizada. Esperando confirmación.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Error al reservar.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }).start();
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    this,
+                    (view, year, month, dayOfMonth) -> {
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(year, month, dayOfMonth);
+
+                        new Thread(() -> {
+                            ReservaDAO reservaDAO = new ReservaDAO(dbHelper);
+                            boolean reservado = reservaDAO.reservarRuta(usuarioId, rutaId, selectedDate.getTime());
+                            if (reservado) {
+                                new com.example.AppTurismo.dao.HistorialDAO(dbHelper)
+                                        .registrarAccion(usuarioId, "Ha reservado la ruta con id " + rutaId + " para el " +
+                                                dayOfMonth + "/" + (month + 1) + "/" + year);
+                            }
+                            runOnUiThread(() -> {
+                                if (reservado) {
+                                    Toast.makeText(this, "Reserva realizada. Esperando confirmación.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(this, "Error al reservar.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }).start();
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
+            datePickerDialog.show();
+        });
+
+        btnValorar.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ValorarRutaActivity.class);
+            intent.putExtra("rutaId", rutaId);
+            intent.putExtra("usuarioId", usuarioId);
+            startActivity(intent);
         });
 
     }

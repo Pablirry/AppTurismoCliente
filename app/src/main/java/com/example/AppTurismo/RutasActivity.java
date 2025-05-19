@@ -38,6 +38,7 @@ public class RutasActivity extends AppCompatActivity {
                         Ruta rutaSeleccionada = rutas.get(position);
                         Intent intent = new Intent(this, DetalleRutaActivity.class);
                         intent.putExtra("rutaId", rutaSeleccionada.getId());
+                        intent.putExtra("usuarioId", usuarioId);
                         startActivity(intent);
                     });
                 });

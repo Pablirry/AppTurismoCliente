@@ -4,6 +4,8 @@ package com.example.AppTurismo;
             import android.os.Bundle;
             import android.widget.Button;
             import android.widget.ImageButton;
+            import android.widget.LinearLayout;
+
             import androidx.appcompat.app.AppCompatActivity;
 
             public class MainActivity extends AppCompatActivity {
@@ -16,10 +18,10 @@ package com.example.AppTurismo;
 
                     usuarioId = getIntent().getIntExtra("usuarioId", -1);
 
-                    Button btnRutas = findViewById(R.id.btnRutas);
-                    Button btnRestaurantes = findViewById(R.id.btnRestaurantes);
-                    Button btnHistorial = findViewById(R.id.btnHistorial);
-                    ImageButton btnMensajes = findViewById(R.id.btnMensajes);
+                    LinearLayout btnRutas = findViewById(R.id.btnRutas);
+                    LinearLayout btnRestaurantes = findViewById(R.id.btnRestaurantes);
+                    LinearLayout btnHistorial = findViewById(R.id.btnHistorial);
+                    LinearLayout btnMensajes = findViewById(R.id.btnMensajes);
 
                     btnRutas.setOnClickListener(v -> {
                         Intent intent = new Intent(this, RutasActivity.class);

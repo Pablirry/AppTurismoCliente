@@ -28,4 +28,17 @@ public class ReservaDAO {
         }
         return false;
     }
-}
+
+    public boolean aceptarReserva(int idReserva) {
+        try (Connection con = db.getConnection()) {
+            String sql = "UPDATE reservas SET confirmada = true WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idReserva);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    }
+
