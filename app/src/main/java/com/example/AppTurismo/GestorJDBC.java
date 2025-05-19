@@ -15,7 +15,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class GestorJDBC extends Service {
 
@@ -27,7 +26,7 @@ public class GestorJDBC extends Service {
     private boolean abierto;
 
     // Constructor privado para singleton
-    private GestorJDBC() {
+    GestorJDBC() {
         abierto = false;
     }
 

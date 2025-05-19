@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/txtNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tú"
+                        android:textColor="#3D246C"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:gravity="end"
+                        android:layout_gravity="end"
+                        android:paddingEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/txtMensaje"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/bg_mensaje_enviado"
+                        android:padding="12dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="12:30 PM"
+                        android:textColor="#888888"
+                        android:textSize="10sp"
+                        android:paddingTop="4dp" />
+                </LinearLayout>

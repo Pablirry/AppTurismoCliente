@@ -4,6 +4,15 @@
             android:background="@drawable/main_menu_bg"
             android:padding="32dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="BIENVENIDO A ASTURTERRA"
+        android:textColor="#3D246C"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

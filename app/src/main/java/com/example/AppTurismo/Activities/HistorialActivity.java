@@ -1,8 +1,11 @@
-package com.example.AppTurismo;
+package com.example.AppTurismo.Activities;
 
 import android.os.Bundle;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.AppTurismo.GestorJDBC;
+import com.example.AppTurismo.R;
 import com.example.AppTurismo.dao.HistorialDAO;
 import com.example.AppTurismo.model.Historial;
 import com.example.AppTurismo.adapter.HistorialAdapter;

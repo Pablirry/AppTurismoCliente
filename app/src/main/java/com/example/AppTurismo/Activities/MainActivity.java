@@ -1,14 +1,14 @@
-package com.example.AppTurismo;
+package com.example.AppTurismo.Activities;
 
             import android.content.Intent;
             import android.os.Bundle;
-            import android.widget.Button;
-            import android.widget.ImageButton;
             import android.widget.LinearLayout;
 
             import androidx.appcompat.app.AppCompatActivity;
 
-            public class MainActivity extends AppCompatActivity {
+            import com.example.AppTurismo.R;
+
+public class MainActivity extends AppCompatActivity {
                 private int usuarioId;
 
                 @Override

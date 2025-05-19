@@ -1,4 +1,4 @@
-package com.example.AppTurismo;
+package com.example.AppTurismo.Activities;
 
                 import android.content.Intent;
                 import android.os.Bundle;
@@ -6,6 +6,9 @@ package com.example.AppTurismo;
                 import android.widget.EditText;
                 import android.widget.Toast;
                 import androidx.appcompat.app.AppCompatActivity;
+
+                import com.example.AppTurismo.GestorJDBC;
+                import com.example.AppTurismo.R;
                 import com.example.AppTurismo.dao.UsuarioDAO;
                 import com.example.AppTurismo.dao.HistorialDAO;
 

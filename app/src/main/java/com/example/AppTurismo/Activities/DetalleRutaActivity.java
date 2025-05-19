@@ -1,4 +1,4 @@
-package com.example.AppTurismo;
+package com.example.AppTurismo.Activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.AppTurismo.GestorJDBC;
+import com.example.AppTurismo.R;
 import com.example.AppTurismo.dao.RutaDAO;
 import com.example.AppTurismo.dao.ReservaDAO;
 import com.example.AppTurismo.model.Ruta;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class DetalleRutaActivity extends AppCompatActivity {
     private int rutaId, usuarioId;

@@ -1,11 +1,12 @@
-package com.example.AppTurismo;
+package com.example.AppTurismo.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.AppTurismo.GestorJDBC;
+import com.example.AppTurismo.R;
 import com.example.AppTurismo.adapter.RestauranteAdapter;
 import com.example.AppTurismo.dao.RestauranteDAO;
 import com.example.AppTurismo.model.Restaurante;
