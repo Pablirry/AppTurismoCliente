@@ -1,52 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="12dp"
-    android:background="?android:attr/selectableItemBackground"
-    android:gravity="center_vertical">
-
-    <ImageView
-        android:id="@+id/imgRuta"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/rounded_image_bg"/>
-
-    <LinearLayout
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="8dp"
+        android:layout_margin="12dp"
+        android:background="@color/white">
 
-        <TextView
-            android:id="@+id/txtNombreRuta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre de la Ruta"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#333"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtDescripcionRuta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Descripción breve de la ruta"
-            android:textSize="14sp"
-            android:textColor="#666"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+            <ImageView
+                android:id="@+id/imgRuta"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_image_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/txtPrecioRuta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio: 0.00€"
-            android:textSize="14sp"
-            android:textColor="#4CAF50"
-            android:paddingTop="4dp"/>
-    </LinearLayout>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtNombreRuta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:text="Nombre de la Ruta"
+                    android:textColor="#222"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDescripcionRuta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingBottom="4dp"
+                    android:text="Descripción breve de la ruta"
+                    android:textColor="#666"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtPrecioRuta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Precio: 0.00€"
+                    android:textColor="#388E3C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>

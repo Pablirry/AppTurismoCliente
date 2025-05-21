@@ -1,19 +1,24 @@
+<!-- app/src/main/res/layout/activity_detalle_ruta.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp">
 
         <ImageView
             android:id="@+id/imgDetalleRuta"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:layout_height="220dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_image_bg"
-            android:layout_marginBottom="16dp"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/txtDetalleNombre"
@@ -21,7 +26,8 @@
             android:layout_height="wrap_content"
             android:text="Nombre de la Ruta"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="24sp"
+            android:textColor="#222"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -30,46 +36,75 @@
             android:layout_height="wrap_content"
             android:text="Descripción completa de la ruta"
             android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
+            android:textColor="#444"
+            android:layout_marginBottom="12dp"/>
 
-        <TextView
-            android:id="@+id/txtDetallePrecio"
-            android:layout_width="wrap_content"
+        <!-- Bloque de precio, dificultad y estrellas -->
+        <LinearLayout
+            android:layout_width="353dp"
             android:layout_height="wrap_content"
-            android:text="Precio: 0.00€"
-            android:textSize="16sp"
-            android:textColor="#4CAF50"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/txtDetalleDificultad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dificultad"
-            android:textSize="16sp"
             android:layout_marginBottom="8dp"
-        />
+            android:orientation="vertical">
 
-        <RatingBar
-            android:id="@+id/ratingBarDificultad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="1"
-            android:isIndicator="true"
-            android:layout_marginBottom="16dp"/>
+            <TextView
+                android:id="@+id/txtDetallePrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Precio: 0.00€"
+                android:textColor="#4CAF50"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDetalleDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Dificultad"
+                android:textColor="#FFA000"
+                android:textSize="16sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBarDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:stepSize="1" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnReservar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Reservar"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#fff"
             android:layout_marginBottom="12dp"/>
 
         <Button
             android:id="@+id/btnValorar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valorar Ruta"/>
+            android:text="Valorar Ruta"
+            android:backgroundTint="#FFA000"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Valoraciones"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#222"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewValoraciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="always"/>
     </LinearLayout>
 </ScrollView>

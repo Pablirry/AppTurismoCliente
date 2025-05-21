@@ -6,15 +6,17 @@ public class Restaurante {
     private int id;
     private String nombre;
     private String ubicacion;
+    private String especialidad;
     private byte[] imagen;
 
     public Restaurante() {}
 
-    public Restaurante(int id, String nombre, String ubicacion, byte[] imagen) {
+    public Restaurante(int id, String nombre, String ubicacion, byte[] imagen, String especialidad) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.imagen = imagen;
+        this.especialidad = especialidad;
     }
 
     public int getId() { return id; }
@@ -28,6 +30,9 @@ public class Restaurante {
 
     public byte[] getImagen() { return imagen; }
     public void setImagen(byte[] imagen) { this.imagen = imagen; }
+
+    public String getEspecialidad() { return especialidad; }
+    public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }
 
     @Override
     public String toString() {

@@ -1,29 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#F5F5F5"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="32dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTituloRutas"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rutas disponibles"
-        android:textSize="20sp"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="8dp"/>
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textColor="#222"/>
+
+    <ListView
+        android:id="@+id/listViewRutas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:padding="8dp"/>
 
     <Button
         android:id="@+id/btnVerReservas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver reservas"
-        android:layout_marginBottom="12dp"/>
-
-    <ListView
-        android:id="@+id/listViewRutas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
+        android:text="Ver mis reservas"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#fff"
+        android:layout_margin="16dp"/>
 </LinearLayout>

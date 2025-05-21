@@ -9,6 +9,7 @@ import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.R;
 import com.example.AppTurismo.adapter.RestauranteAdapter;
 import com.example.AppTurismo.dao.RestauranteDAO;
+import com.example.AppTurismo.dao.ValoracionRestauranteDAO;
 import com.example.AppTurismo.model.Restaurante;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class RestaurantesActivity extends AppCompatActivity {
 
         new Thread(() -> {
             RestauranteDAO restauranteDAO = new RestauranteDAO(dbHelper);
+            ValoracionRestauranteDAO valoracionRestauranteDAO = new ValoracionRestauranteDAO(dbHelper);
             List<Restaurante> restaurantes = restauranteDAO.listarRestaurantes();
             runOnUiThread(() -> {
                 RestauranteAdapter adapter = new RestauranteAdapter(this, restaurantes);
@@ -40,7 +42,6 @@ public class RestaurantesActivity extends AppCompatActivity {
                     startActivity(intent);
                 });
             });
-
         }).start();
 
 

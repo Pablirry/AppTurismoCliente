@@ -7,14 +7,21 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.R;
+import com.example.AppTurismo.adapter.ValoracionRutaAdapter;
 import com.example.AppTurismo.dao.RutaDAO;
 import com.example.AppTurismo.dao.ReservaDAO;
+import com.example.AppTurismo.dao.ValoracionRutaDAO;
 import com.example.AppTurismo.model.Ruta;
+import com.example.AppTurismo.model.ValoracionRuta;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class DetalleRutaActivity extends AppCompatActivity {
     private int rutaId, usuarioId;
@@ -37,10 +44,21 @@ public class DetalleRutaActivity extends AppCompatActivity {
         RatingBar ratingBarDificultad = findViewById(R.id.ratingBarDificultad);
         Button btnReservar = findViewById(R.id.btnReservar);
         Button btnValorar = findViewById(R.id.btnValorar);
+        RecyclerView recyclerViewValoraciones = findViewById(R.id.recyclerViewValoraciones);
+
+        recyclerViewValoraciones.setLayoutManager(new LinearLayoutManager(this));
 
         new Thread(() -> {
-            RutaDAO rutaDAO = new RutaDAO(GestorJDBC.getInstance());
+            RutaDAO rutaDAO = new RutaDAO(dbHelper);
             Ruta ruta = rutaDAO.obtenerRutaPorId(rutaId);
+
+            ValoracionRutaDAO valoracionDAO = new ValoracionRutaDAO(dbHelper);
+            List<ValoracionRuta> valoraciones = valoracionDAO.obtenerValoracionesPorRuta(rutaId);
+            List<String> nombresUsuarios = new ArrayList<>();
+            for (ValoracionRuta v : valoraciones) {
+                nombresUsuarios.add(valoracionDAO.obtenerNombreUsuarioPorId(v.getIdUsuario()));
+            }
+
             runOnUiThread(() -> {
                 if (ruta != null) {
                     txtNombre.setText(ruta.getNombre());
@@ -60,6 +78,8 @@ public class DetalleRutaActivity extends AppCompatActivity {
                     ratingBarDificultad.setRating(0);
                     imgRuta.setImageResource(R.drawable.main_menu_bg);
                 }
+                ValoracionRutaAdapter adapter = new ValoracionRutaAdapter(valoraciones, nombresUsuarios);
+                recyclerViewValoraciones.setAdapter(adapter);
             });
         }).start();
 
@@ -101,6 +121,5 @@ public class DetalleRutaActivity extends AppCompatActivity {
             intent.putExtra("usuarioId", usuarioId);
             startActivity(intent);
         });
-
     }
 }

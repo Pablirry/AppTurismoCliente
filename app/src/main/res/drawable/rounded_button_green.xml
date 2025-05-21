@@ -1,0 +1,15 @@
+<!-- Ejemplo para rounded_button_green.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#388E3C"/>
+            <corners android:radius="24dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4CAF50"/>
+            <corners android:radius="24dp"/>
+        </shape>
+    </item>
+</selector>

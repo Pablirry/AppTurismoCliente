@@ -12,6 +12,7 @@ import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.R;
 import com.example.AppTurismo.adapter.RutaAdapter;
 import com.example.AppTurismo.dao.RutaDAO;
+import com.example.AppTurismo.dao.ValoracionRutaDAO;
 import com.example.AppTurismo.model.Ruta;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class RutasActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 RutaDAO rutaDAO = new RutaDAO(dbHelper);
+                ValoracionRutaDAO valoracionRutaDAO = new ValoracionRutaDAO(dbHelper);
                 List<Ruta> rutas = rutaDAO.listarRutas();
                 runOnUiThread(() -> {
                     RutaAdapter adapter = new RutaAdapter(this, rutas);

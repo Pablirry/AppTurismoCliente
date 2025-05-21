@@ -1,90 +1,108 @@
+// Archivo: app/src/main/java/com/example/AppTurismo/adapter/ChatAdapter.java
 package com.example.AppTurismo.adapter;
 
-    import android.view.LayoutInflater;
-    import android.view.View;
-    import android.view.ViewGroup;
-    import android.widget.TextView;
-    import androidx.recyclerview.widget.RecyclerView;
-    import com.example.AppTurismo.R;
-    import com.example.AppTurismo.utils.ChatItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.AppTurismo.R;
+import com.example.AppTurismo.utils.ChatItem;
 
-    import java.sql.Timestamp;
-    import java.text.SimpleDateFormat;
-    import java.util.List;
-    import java.util.Locale;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
-    public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private static final int TIPO_ENVIADO = ChatItem.TIPO_USUARIO;
-        private static final int TIPO_RECIBIDO = ChatItem.TIPO_ADMIN;
-        private List<ChatItem> chatItems;
+public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-        public ChatAdapter(List<ChatItem> chatItems) {
-            this.chatItems = chatItems;
-        }
+    private List<ChatItem> chatItems;
 
-        @Override
-        public int getItemViewType(int position) {
-            return chatItems.get(position).getTipo();
-        }
+    public ChatAdapter(List<ChatItem> chatItems) {
+        this.chatItems = chatItems;
+    }
 
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            if (viewType == TIPO_ENVIADO) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mensaje_enviado, parent, false);
-                return new EnviadoViewHolder(view);
-            } else {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mensaje_recibido, parent, false);
-                return new RecibidoViewHolder(view);
-            }
-        }
+    public void setChatItems(List<ChatItem> chatItems) {
+        this.chatItems = chatItems;
+        notifyDataSetChanged();
+    }
 
-        @Override
-        public int getItemCount() {
-            return chatItems != null ? chatItems.size() : 0;
-        }
+    @Override
+    public int getItemViewType(int position) {
+        return chatItems.get(position).getTipo();
+    }
 
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ChatItem item = chatItems.get(position);
-            if (holder instanceof EnviadoViewHolder) {
-                ((EnviadoViewHolder) holder).txtMensaje.setText(item.getTexto());
-                ((EnviadoViewHolder) holder).txtNombre.setText("Tú");
-                ((EnviadoViewHolder) holder).txtFecha.setText(formatFecha(item.getFecha()));
-            } else if (holder instanceof RecibidoViewHolder) {
-                ((RecibidoViewHolder) holder).txtMensaje.setText(item.getTexto());
-                ((RecibidoViewHolder) holder).txtNombre.setText("Administrador");
-                ((RecibidoViewHolder) holder).txtFecha.setText(formatFecha(item.getFecha()));
-            }
-        }
-
-        private String formatFecha(Timestamp fecha) {
-            if (fecha == null) return "";
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-            return sdf.format(fecha);
-        }
-
-        static class EnviadoViewHolder extends RecyclerView.ViewHolder {
-            TextView txtMensaje, txtNombre, txtFecha;
-            EnviadoViewHolder(View itemView) {
-                super(itemView);
-                txtMensaje = itemView.findViewById(R.id.txtMensaje);
-                txtNombre = itemView.findViewById(R.id.txtNombre);
-                txtFecha = itemView.findViewById(R.id.txtFecha);
-            }
-        }
-
-        static class RecibidoViewHolder extends RecyclerView.ViewHolder {
-            TextView txtMensaje, txtNombre, txtFecha;
-            RecibidoViewHolder(View itemView) {
-                super(itemView);
-                txtMensaje = itemView.findViewById(R.id.txtMensaje);
-                txtNombre = itemView.findViewById(R.id.txtNombre);
-                txtFecha = itemView.findViewById(R.id.txtFecha);
-            }
-        }
-
-        public void setChatItems(List<ChatItem> chatItems) {
-            this.chatItems = chatItems;
-            notifyDataSetChanged();
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == ChatItem.TIPO_USUARIO) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_mensaje_enviado, parent, false);
+            return new UsuarioViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_mensaje_recibido, parent, false);
+            return new AdminViewHolder(view);
         }
     }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ChatItem item = chatItems.get(position);
+        String horaFormateada = formatearHora(item.getFecha());
+
+        if (holder instanceof UsuarioViewHolder) {
+            ((UsuarioViewHolder) holder).txtNombre.setText("Tú");
+            ((UsuarioViewHolder) holder).txtMensaje.setText(item.getTexto());
+            ((UsuarioViewHolder) holder).txtFecha.setText(horaFormateada);
+        } else if (holder instanceof AdminViewHolder) {
+            ((AdminViewHolder) holder).txtNombre.setText("Administrador");
+            ((AdminViewHolder) holder).txtMensaje.setText(item.getTexto());
+            ((AdminViewHolder) holder).txtFecha.setText(horaFormateada);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return chatItems != null ? chatItems.size() : 0;
+    }
+
+    static class UsuarioViewHolder extends RecyclerView.ViewHolder {
+        TextView txtNombre, txtMensaje, txtFecha;
+        UsuarioViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtNombre = itemView.findViewById(R.id.txtNombre);
+            txtMensaje = itemView.findViewById(R.id.txtMensaje);
+            txtFecha = itemView.findViewById(R.id.txtFecha);
+        }
+    }
+
+    static class AdminViewHolder extends RecyclerView.ViewHolder {
+        TextView txtNombre, txtMensaje, txtFecha;
+        AdminViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtNombre = itemView.findViewById(R.id.txtNombre);
+            txtMensaje = itemView.findViewById(R.id.txtMensaje);
+            txtFecha = itemView.findViewById(R.id.txtFecha);
+        }
+    }
+
+    private String formatearHora(Timestamp timestamp) {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(timestamp.getTime());
+            calendar.add(Calendar.HOUR_OF_DAY, 2);
+
+            Date nuevaFecha = calendar.getTime();
+
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            return formatoSalida.format(nuevaFecha);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+}

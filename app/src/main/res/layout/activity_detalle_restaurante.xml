@@ -1,41 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgDetalleRestaurante"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="16dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:paddingTop="32dp"
+                    android:paddingBottom="32dp">
 
-        <TextView
-            android:id="@+id/txtDetalleNombreRestaurante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre del Restaurante"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:layout_marginBottom="8dp"/>
+                    <ImageView
+                        android:id="@+id/imgDetalleRestaurante"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/rounded_image_bg"
+                        android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/txtDetalleUbicacionRestaurante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ubicación"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:id="@+id/txtDetalleNombreRestaurante"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del Restaurante"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:textColor="#222"
+                        android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btnValorarRestaurante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valorar Restaurante"/>
-    </LinearLayout>
-</ScrollView>
+                    <TextView
+                        android:id="@+id/txtDetalleEspecialidadRestaurante"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Especialidad"
+                        android:textSize="16sp"
+                        android:textColor="#4CAF50"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/txtDetalleUbicacionRestaurante"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ubicación"
+                        android:textSize="16sp"
+                        android:textColor="#666"
+                        android:layout_marginBottom="4dp"/>
+
+                    <Button
+                        android:id="@+id/btnValorarRestaurante"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Valorar Restaurante"
+                        android:textColor="#fff"
+                        android:backgroundTint="#FFA000"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:text="Valoraciones"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="#222"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewValoraciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="always"/>
+                </LinearLayout>
+            </ScrollView>
