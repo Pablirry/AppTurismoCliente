@@ -34,128 +34,166 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <GridLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:alignmentMode="alignMargins"
-        android:columnCount="2"
+        android:orientation="vertical"
         android:gravity="center"
-        android:rowCount="3"
-        android:useDefaultMargins="true"
+        android:layout_gravity="center"
         android:layout_marginTop="60dp">
 
+        <!-- Primera fila -->
         <LinearLayout
-            android:id="@+id/btnRutas"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/btnRutas"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_margin="12dp"
+                android:background="@drawable/rounded_square_menu"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_rutas_foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Rutas"
+                    android:textColor="#3D246C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnRestaurantes"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_margin="12dp"
+                android:background="@drawable/rounded_square_menu"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_restaurantes_foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurantes"
+                    android:textColor="#3D246C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Segunda fila -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/btnHistorial"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_margin="12dp"
+                android:background="@drawable/rounded_square_menu"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_historial_foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Historial"
+                    android:textColor="#3D246C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMensajes"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:layout_margin="12dp"
+                android:background="@drawable/rounded_square_menu"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_mensajes_foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Mensajes"
+                    android:textColor="#3D246C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Panel de eventos centrado -->
+        <LinearLayout
+            android:id="@+id/btnEventos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
             android:background="@drawable/rounded_square_menu"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="12dp">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_rutas_foreground" />
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/ic_evento_foreground"
+                android:contentDescription="Eventos" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Rutas"
+                android:text="Eventos"
                 android:textColor="#3D246C"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnRestaurantes"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_margin="16dp"
-            android:background="@drawable/rounded_square_menu"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_restaurantes_foreground" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Restaurantes"
-                android:textColor="#3D246C"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnHistorial"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_margin="16dp"
-            android:background="@drawable/rounded_square_menu"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_historial_foreground" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Historial"
-                android:textColor="#3D246C"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnMensajes"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_margin="16dp"
-            android:background="@drawable/rounded_square_menu"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_mensajes_foreground" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Mensajes"
-                android:textColor="#3D246C"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </GridLayout>
+    </LinearLayout>
 </FrameLayout>

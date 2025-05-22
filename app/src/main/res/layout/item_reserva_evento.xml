@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="6dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvNombreEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la Reserva"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#333"/>
+
+        <TextView
+            android:id="@+id/tvFechaReservaEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textSize="15sp"
+            android:textColor="#666"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvEstadoReservaEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp"
+            android:textColor="#2196F3"/>
+
+        <Button
+            android:id="@+id/btnPagarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proceder al pago"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#fff"
+            android:visibility="gone"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

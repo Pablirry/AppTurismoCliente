@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout btnRestaurantes = findViewById(R.id.btnRestaurantes);
                     LinearLayout btnHistorial = findViewById(R.id.btnHistorial);
                     LinearLayout btnMensajes = findViewById(R.id.btnMensajes);
+                    LinearLayout btnEventos = findViewById(R.id.btnEventos);
 
                     btnRutas.setOnClickListener(v -> {
                         Intent intent = new Intent(this, RutasActivity.class);
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
                     btnMensajes.setOnClickListener(v -> {
                         Intent intent = new Intent(this, MensajeActivity.class);
+                        intent.putExtra("usuarioId", usuarioId);
+                        startActivity(intent);
+                    });
+
+                    btnEventos.setOnClickListener(v -> {
+                        Intent intent = new Intent(MainActivity.this, EventosActivity.class);
                         intent.putExtra("usuarioId", usuarioId);
                         startActivity(intent);
                     });

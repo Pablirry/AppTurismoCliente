@@ -54,5 +54,34 @@ public class ReservaDAO {
         }
         return reservas;
     }
+    public boolean reservarEvento(int usuarioId, int eventoId, Date fecha) {
+        try (Connection con = db.getConnection()) {
+            String checkSql = "SELECT COUNT(*) FROM reservas_eventos WHERE usuario_id = ? AND evento_id = ? AND fecha_reserva = ?";
+            PreparedStatement checkPs = con.prepareStatement(checkSql);
+            checkPs.setInt(1, usuarioId);
+            checkPs.setInt(2, eventoId);
+            checkPs.setDate(3, new java.sql.Date(fecha.getTime()));
+            ResultSet rs = checkPs.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                rs.close();
+                checkPs.close();
+                return false;
+            }
+            rs.close();
+            checkPs.close();
+
+            String sql = "INSERT INTO reservas_eventos (usuario_id, evento_id, fecha_reserva) VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, usuarioId);
+            ps.setInt(2, eventoId);
+            ps.setDate(3, new java.sql.Date(fecha.getTime()));
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+}
 
