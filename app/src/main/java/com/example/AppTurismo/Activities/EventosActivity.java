@@ -40,12 +40,16 @@ public class EventosActivity extends AppCompatActivity {
             List<Evento> eventos = eventoDAO.obtenerTodosEventos();
 
             runOnUiThread(() -> {
-                EventoAdapter adapter = new EventoAdapter(eventos, evento -> {
-                    Intent intent = new Intent(this, DetalleEventoActivity.class);
-                    intent.putExtra("eventoId", evento.getId());
-                    intent.putExtra("usuarioId", usuarioId);
-                    startActivity(intent);
-                });
+                EventoAdapter adapter = new EventoAdapter(
+                        this,
+                        eventos,
+                        evento -> {
+                            Intent intent = new Intent(this, DetalleEventoActivity.class);
+                            intent.putExtra("eventoId", evento.getId());
+                            intent.putExtra("usuarioId", usuarioId);
+                            startActivity(intent);
+                        }
+                );
                 recyclerView.setAdapter(adapter);
             });
         }).start();

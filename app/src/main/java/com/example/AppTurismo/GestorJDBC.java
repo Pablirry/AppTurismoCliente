@@ -91,4 +91,19 @@ public class GestorJDBC extends Service {
         return public_id;
     }
 
+    public String obtenerNombreUsuario(int usuarioId) throws SQLException {
+        String nombre = null;
+        String sql = "SELECT nombre FROM usuarios WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, usuarioId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                nombre = rs.getString("nombre");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombre;
+    }
 }

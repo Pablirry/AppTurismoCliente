@@ -45,7 +45,6 @@ package com.example.AppTurismo.Activities;
                                 try {
                                     registrado = usuarioDAO.registrarUsuario(nombre, correo, contrasena);
                                     if (registrado) {
-                                        // Obtener el id del usuario recién registrado
                                         try (Connection con = dbHelper.getConnection()) {
                                             String sql = "SELECT id FROM usuarios WHERE correo = ?";
                                             PreparedStatement ps = con.prepareStatement(sql);
@@ -57,7 +56,6 @@ package com.example.AppTurismo.Activities;
                                             rs.close();
                                             ps.close();
                                         }
-                                        // Registrar acción de registro
                                         if (usuarioId != -1) {
                                             new HistorialDAO(dbHelper).registrarAccion(usuarioId, "Se ha registrado");
                                         }

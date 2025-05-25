@@ -11,7 +11,9 @@ package com.example.AppTurismo.Activities;
             import com.example.AppTurismo.R;
             import com.example.AppTurismo.dao.HistorialDAO;
 
-            public class LoginActivity extends AppCompatActivity {
+            import java.sql.SQLException;
+
+public class LoginActivity extends AppCompatActivity {
                 private EditText etCorreo, etContrasena;
                 private Button btnLogin, btnRegistro;
                 private GestorJDBC dbHelper;
@@ -42,10 +44,16 @@ package com.example.AppTurismo.Activities;
                             runOnUiThread(() -> {
                                 if (finalPublicId != null) {
                                     int usuarioId = Integer.parseInt(finalPublicId);
-                                    // Registrar acción de inicio de sesión
                                     new Thread(() -> {
                                         new HistorialDAO(dbHelper).registrarAccion(usuarioId, "Ha iniciado sesión");
                                     }).start();
+
+                                    String nombreUsuario = null;
+                                    try {
+                                        nombreUsuario = dbHelper.obtenerNombreUsuario(usuarioId);
+                                    } catch (SQLException e) {
+                                        throw new RuntimeException(e);
+                                    }
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("usuarioId", usuarioId);
