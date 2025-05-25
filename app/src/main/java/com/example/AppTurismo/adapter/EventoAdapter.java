@@ -47,6 +47,16 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
         holder.tvTipoEvento.setText(evento.getTipo());
         holder.tvPrecioEvento.setText("Precio: $" + evento.getPrecio());
 
+        if (evento.getImagen() != null && evento.getImagen().length > 0) {
+            holder.imgEvento.setImageBitmap(
+                    android.graphics.BitmapFactory.decodeByteArray(
+                            evento.getImagen(), 0, evento.getImagen().length
+                    )
+            );
+        } else {
+            holder.imgEvento.setImageResource(R.drawable.main_menu_bg);
+        }
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onItemClick(evento);
         });

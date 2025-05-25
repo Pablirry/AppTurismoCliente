@@ -30,6 +30,7 @@ public class RestauranteDAO {
                 restaurante.setNombre(rs.getString("nombre"));
                 restaurante.setUbicacion(rs.getString("ubicacion"));
                 restaurante.setImagen(rs.getBytes("imagen"));
+                restaurante.setDescripcion(rs.getString("descripcion"));
                 restaurante.setEspecialidad(rs.getString("especialidad"));
                 restaurantes.add(restaurante);
             }
@@ -50,6 +51,7 @@ public class RestauranteDAO {
                     rs.getString("nombre"),
                     rs.getString("ubicacion"),
                     rs.getBytes("imagen"),
+                    rs.getString("descripcion"),
                     rs.getString("especialidad")
                 );
             }

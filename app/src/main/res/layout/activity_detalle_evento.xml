@@ -34,17 +34,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tipo de evento"
-            android:textColor="#666"
+            android:textColor="#FFA000"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvDescripcionDetalleEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripción del evento"
-            android:textColor="#444"
+            android:textColor="#3D246C"
             android:textSize="16sp"
+            android:gravity="center"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -52,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ubicación"
-            android:textColor="#666"
+            android:textColor="#4CAF50"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 
@@ -61,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio: $0.00"
-            android:textColor="#000"
+            android:textColor="#1976D2"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"/>
 

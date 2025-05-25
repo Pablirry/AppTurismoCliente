@@ -42,6 +42,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         Button btnValorar = findViewById(R.id.btnValorarRestaurante);
         RecyclerView recyclerViewValoraciones = findViewById(R.id.recyclerViewValoraciones);
         TextView txtEspecialidad = findViewById(R.id.txtDetalleEspecialidadRestaurante);
+        TextView txtDescripcion = findViewById(R.id.txtDetalleDescripcionRestaurante);
 
         recyclerViewValoraciones.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,6 +62,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
                     txtNombre.setText(restaurante.getNombre());
                     txtEspecialidad.setText(restaurante.getEspecialidad());
                     txtUbicacion.setText(restaurante.getUbicacion());
+                    txtDescripcion.setText(restaurante.getDescripcion());
                     if (restaurante.getImagen() != null && restaurante.getImagen().length > 0) {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(restaurante.getImagen(), 0, restaurante.getImagen().length);
                         imgRestaurante.setImageBitmap(bitmap);
