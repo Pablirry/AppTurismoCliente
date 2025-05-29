@@ -40,17 +40,16 @@
         <EditText
             android:id="@+id/etMensaje"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
+            android:padding="12dp"
             android:background="@drawable/rounded_edittext_bg"
             android:gravity="top|start"
-            android:hint="Escribe un mensaje"
+            android:hint="Escribe tu mensaje..."
             android:inputType="textMultiLine"
             android:maxLines="6"
-            android:minHeight="48dp"
-            android:overScrollMode="always"
-            android:padding="12dp"
-            android:textSize="16sp" />
+            android:minLines="1"
+            android:scrollbars="vertical" />
 
         <Button
             android:id="@+id/btnEnviar"

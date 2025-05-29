@@ -1,106 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:orientation="vertical"
+    android:padding="35dp"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
 
-    <LinearLayout
+    <!-- Contenido fijo centrado -->
+    <ImageView
+        android:id="@+id/imgDetalleEvento"
+        android:layout_width="319dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_menu_bg" />
+
+    <TextView
+        android:id="@+id/tvNombreDetalleEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Evento"
+        android:textColor="#3D246C"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvTipoDetalleEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de evento"
+        android:textColor="#FFA000"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDescripcionDetalleEvento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:text="Descripción del evento"
+        android:textColor="#3D246C"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
 
-        <ImageView
-            android:id="@+id/imgDetalleEvento"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/main_menu_bg" />
+    <TextView
+        android:id="@+id/tvUbicacionDetalleEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:textColor="#4CAF50"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/tvNombreDetalleEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre del Evento"
-            android:textColor="#3D246C"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="8dp"/>
+    <TextView
+        android:id="@+id/tvPrecioDetalleEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio: $0.00"
+        android:textColor="#1976D2"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/tvTipoDetalleEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo de evento"
-            android:textColor="#FFA000"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
+    <Button
+        android:id="@+id/btnReservar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reservar Evento"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#fff"/>
 
-        <TextView
-            android:id="@+id/tvDescripcionDetalleEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripción del evento"
-            android:textColor="#3D246C"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginBottom="8dp"/>
+    <Button
+        android:id="@+id/btnValorar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valorar Evento"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFA000"
+        android:textColor="#fff"/>
 
-        <TextView
-            android:id="@+id/tvUbicacionDetalleEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ubicación"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
+    <TextView
+        android:id="@+id/tvTituloValoraciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valoraciones"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#3D246C"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"/>
 
-        <TextView
-            android:id="@+id/tvPrecioDetalleEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio: $0.00"
-            android:textColor="#1976D2"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnReservar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reservar Evento"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#4CAF50"
-            android:textColor="#fff"/>
-
-        <Button
-            android:id="@+id/btnValorar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valorar Evento"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FFA000"
-            android:textColor="#fff"/>
-
-        <TextView
-            android:id="@+id/tvTituloValoraciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Valoraciones"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#3D246C"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewValoracionesEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="60dp"/>
-    </LinearLayout>
-</ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewValoracionesEvento"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="60dp"/>
+</LinearLayout>
