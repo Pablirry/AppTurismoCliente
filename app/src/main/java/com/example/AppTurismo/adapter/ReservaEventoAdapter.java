@@ -8,7 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.AppTurismo.GestorJDBC;
 import com.example.AppTurismo.R;
+import com.example.AppTurismo.dao.EventoDAO;
 import com.example.AppTurismo.model.ReservaEvento;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -30,7 +33,9 @@ public class ReservaEventoAdapter extends RecyclerView.Adapter<ReservaEventoAdap
     @Override
     public void onBindViewHolder(ReservaEventoViewHolder holder, int position) {
         ReservaEvento r = reservasEvento.get(position);
-        holder.tvNombreEvento.setText("Evento ID: " + r.getIdEvento());
+        EventoDAO eventoDAO = new EventoDAO(GestorJDBC.getInstance());
+        String nombreEvento = eventoDAO.obtenerNombreEventoPorId(r.getIdEvento());
+        holder.tvNombreEvento.setText(nombreEvento != null ? nombreEvento : "Evento " + r.getIdEvento());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         holder.tvFechaReservaEvento.setText(r.getFecha() != null ? sdf.format(r.getFecha()) : "");
 

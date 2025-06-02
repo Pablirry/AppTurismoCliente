@@ -51,4 +51,19 @@ public class EventoDAO {
         } catch (Exception e) { e.printStackTrace(); }
         return lista;
     }
+
+    public String obtenerNombreEventoPorId(int idEvento) {
+        try (Connection con = dbHelper.getConnection()) {
+            String sql = "SELECT nombre FROM eventos WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEvento);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("nombre");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
